@@ -1,0 +1,12 @@
+<div class="m-branding-image">
+  [image logo placeholder]
+</div>
+
+<form class="m-login-prompt" {{action "loginUser" on="submit"}}>
+  {{input type="text" value=username placeholder="Username"}}
+  {{input type="password" value=password placeholder="Password"}}
+
+  <button type="submit">log in</button>
+</form>
+
+{{outlet}}
