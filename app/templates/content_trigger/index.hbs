@@ -4,7 +4,7 @@
     </div>
     
     <div class="cell pull-right">
-        <a class="btn btn-lg">New Content Trigger</a>
+        {{#link-to "content_trigger.new" class="btn btn-lg"}}New Content Trigger{{/link-to}}
     </div>
 </div>
 
@@ -18,7 +18,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>Aisle 5 Info</td>
+            <td>{{#link-to "content_trigger.view"}}Aisle 5 Info{{/link-to}}</td>
             <td>Receiving</td>
             <td>Edit <i class="fa fa-edit"></i></td>
         </tr>

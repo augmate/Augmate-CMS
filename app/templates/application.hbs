@@ -3,9 +3,9 @@
 
 {{#if isLoggedIn}}
     <div class="nav-tabs">
-        <a class="tab active" href="#">Apps</a>
-        <a class="tab" href="#">Contact</a>
-        <a class="tab" href="#">Log Out</a>
+        {{#linkTo "applist" class="tab"}}Apps{{/linkTo}}
+        {{#linkTo "contact_us" class="tab"}}Contact{{/linkTo}}
+        {{#linkTo "login" class="tab"}}Log Out{{/linkTo}}
     </div>
     <div class="container">
         {{outlet}}

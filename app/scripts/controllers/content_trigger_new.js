@@ -1,8 +1,9 @@
-Ember4.CtriggerNewController = Ember.ObjectController.extend({
+Ember4.ContentTriggerNewController = Ember.ObjectController.extend({
 
     actions: {
         onSubmit: function() {
             console.log("submitting new trigger");
+            this.transitionToRoute("content_trigger.index");
         },
         
         onPrint: function() {
@@ -11,6 +12,7 @@ Ember4.CtriggerNewController = Ember.ObjectController.extend({
         
         onCancel: function() {
             console.log("canceling trigger creation");
+            this.transitionToRoute("content_trigger.index");
         }
     }
     

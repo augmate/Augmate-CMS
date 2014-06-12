@@ -1,0 +1,17 @@
+<div class="m-page-header">
+    <h1>Contact Us</h1>
+    <h4>Any questions, concerns, or feedback would be appreciated!</h4>
+</div>
+
+<form class="m-generic-form" {{action "onSubmit" on="submit"}}>
+    <div class="input-field">
+        {{input type="text" value=trigger_name placeholder="Subject"}}
+    </div>
+    <div class="input-field">
+        {{textarea rows="7" value=trigger_content placeholder="How can we help you?"}}
+    </div>
+
+    <div class="controls">
+        <button type="submit" class="btn btn-lg btn-primary">Send</button>
+    </div>
+</form>
