@@ -1,0 +1,27 @@
+<div class="m-page-header">
+    <h1>New Content Trigger</h1>
+    <h4>Embed information into a QRcode for workplace retrieval</h4>
+</div>
+
+<form class="m-new-content-trigger" {{action "onSubmit" on="submit"}}>
+    <div class="row">
+        <div class="cell">
+            <div class="input-field">
+                {{input type="text" value=trigger_name placeholder="Name of Content Trigger e.g. Aisle 5 Info"}}
+            </div>
+            <div class="input-field">
+                {{textarea value=trigger_content placeholder="Text Content to be embedded in QRCode (Limit 50 Characters)"}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="qrcode-header">QRCode Trigger</div>
+            
+            <img src="http://fpoimg.com/250x250?text=QRCODE" />
+        </div>
+    </div>
+    <div class="controls">
+        <button type="submit" class="btn btn-lg btn-primary">Update</button>
+        <button {{action "onPrint"}} class="btn btn-lg btn-info">Print</button>
+        <button {{action "onCancel"}} class="btn btn-lg btn-danger">Cancel</button>
+    </div>
+</form>

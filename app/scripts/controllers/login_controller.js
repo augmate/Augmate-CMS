@@ -1,35 +1,38 @@
 Ember4.LoginController = Ember.ObjectController.extend({
-	loginUser: function() {
-		var data = this.getProperties('username', 'password');
 
-		console.dir(data);
+    sessionToken: null,
+    isLoggedIn: Ember.computed.notEmpty('sessionToken'),
+    
+    init: function() {
+        this.set('sessionToken', "yey");
+    },
+    
+    actions: {
+        loginUser: function () {
+            var data = this.getProperties('username', 'password');
+            console.dir(data);
 
-		var encoded = btoa(data.username + ":" + data.password);
-		console.log("encoded: " + encoded);
+            var encoded = btoa(data.username + ":" + data.password);
+            console.log("encoded: " + encoded);
 
-		// $.post('http://auth.api.augmate.net/token', data, function(result) {
-		// 	console.dir(result);
-		// });
+            var that = this;
 
-		//return;
-
-		$.ajax({
-			type: 'POST',
-			//crossDomain: true,
-			url: 'http://localhost/api/token',
-			//url: 'http://auth.api.augmate.net/token',
-			beforeSend: function(req) {
-				req.setRequestHeader('Authorization', 'Basic ' + encoded);
-				req.setRequestHeader('Content-Type', 'application/json');
-			},
-			data: JSON.stringify({ grant_type: 'client_credentials' }),
-			dataType: 'json',
-			success: function(result) {
-				console.log("got result:");
-				console.dir(result);
-				//router.transitionTo('index');
-			}
-		});
-	}
+            var authRequest = $.ajax({
+                type: 'POST',
+                url: 'https://auth.api.augmate.com/token',
+                beforeSend: function (req) {
+                    req.setRequestHeader('Authorization', 'Basic ' + encoded);
+                },
+                data: { grant_type: 'client_credentials' },
+                dataType: 'json'
+            });
+            
+            authRequest.then(function (result) {
+                    console.log("then:");
+                    console.dir(result);
+                    that.transitionToRoute('applist');
+            });
+        }
+    }
 });
 

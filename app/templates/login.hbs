@@ -1,12 +1,21 @@
-<div class="m-branding-image">
-  [image logo placeholder]
-</div>
-
 <form class="m-login-prompt" {{action "loginUser" on="submit"}}>
-  {{input type="text" value=username placeholder="Username"}}
-  {{input type="password" value=password placeholder="Password"}}
 
-  <button type="submit">log in</button>
+    <div class="m-branding-image">
+        <img src="http://placehold.it/350x300" />
+    </div>
+
+    <div class="note">login hint: officialApiClient/C0FFEE</div>
+
+    <div class="input-field">
+        <i class="fa fa-user"></i>
+        {{input type="text" value=username placeholder="Username"}}
+    </div>
+    <div class="input-field">
+        <i class="fa fa-lock"></i>
+        {{input type="password" value=password placeholder="Password"}}
+    </div>
+
+    <button type="submit">log in</button>
 </form>
 
 {{outlet}}
