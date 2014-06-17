@@ -7,20 +7,12 @@ Ember4.ApplicationRoute = Ember.Route.extend({
         // this also happens at login/logout
         if(this.session.isAuthenticated())
             this.api.setAccessToken(this.session.getSessionAccessToken());
+        
+        //this.get('controller').set('isLoggedIn', this.session.isAuthenticated());
     },
     
     beforeModel: function() {
         var self = this;
-        
-        /*
-        auth = this.controllerFor('login');
-        if(auth.get('isLoggedIn')) {
-            console.log("auth controller claims user is logged in");
-        } else {
-            console.log("auth controller claims user is NOT logged in");
-            self.transitionTo('/login');
-        }
-        */
     },
     
     actions: {

@@ -1,4 +1,4 @@
-{{#if isLoggedIn}}
+{{#if Ember.Session.haveAuthenticatedSession}}
     <div class="nav-tabs">
         {{#link-to "apps" class="tab"}}Apps{{/link-to}}
         {{#link-to "contact_us" class="tab"}}Contact{{/link-to}}

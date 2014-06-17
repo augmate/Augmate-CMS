@@ -18,6 +18,8 @@ Ember4.AppsContentTriggerIndexRoute = Ember.AuthenticatedRoute.extend({
                     models.pushObject(model);
                 });
                 
+                console.log("fetched model list:");
+                console.dir(models);
             },
             function onFailure(xhr, status, err) {
                 console.log("trigger-list fail:");

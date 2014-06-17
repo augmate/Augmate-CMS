@@ -11,7 +11,6 @@ Ember.AuthenticatedRoute = Ember.Route.extend({
     },
     redirectToLogin: function(transition) {
         var loginController = this.controllerFor('login');
-        console.dir(transition);
         loginController.set('targetTransition', transition);
         this.transitionTo('login');
     }

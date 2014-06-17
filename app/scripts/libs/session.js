@@ -8,11 +8,12 @@ Ember.Session = Ember.Object.create({
         return localStorage.getItem(key) || {};
     },
     
+    // on login
     createSession: function(access_token) {
         this.save('access_token', access_token);
     },
     
-    // force logout
+    // on logout
     resetSession: function() {
         localStorage.removeItem('access_token');
     },
@@ -25,6 +26,15 @@ Ember.Session = Ember.Object.create({
         return localStorage.getItem('access_token') != null;
     },
     
+    haveAuthenticatedSession: false,
+    
+    // check state of authentication
+    // update anyone who cares
+    refresh: function() {
+        if(this.isAuthenticated())
+            this.set('haveAuthenticatedSession', true);
+    },
+    
     setup: function(app, options) {
         
         options = options || {};
@@ -34,6 +44,8 @@ Ember.Session = Ember.Object.create({
         Ember.A(['model', 'controller', 'view', 'route', 'component']).forEach(function(component){
             Ember4.inject(component, 'session', 'session:current');
         });
+        
+        this.refresh();
     }
 });
 
@@ -59,6 +71,7 @@ Ember.AugmateAPI = Ember.Object.create({
         
         return $.ajax({
             type: type,
+            cache: false,
             url: url,
             beforeSend: function (req) {
                 req.setRequestHeader('Authorization', 'Bearer ' + access_token);

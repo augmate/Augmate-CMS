@@ -20,6 +20,8 @@ require('scripts/libs/*');
 Ember.Session.setup(Ember4, {});
 Ember.AugmateAPI.setup(Ember4);
 
+Ember.Session.refresh();
+
 // the rest
 require('scripts/controllers/*');
 require('scripts/store');
