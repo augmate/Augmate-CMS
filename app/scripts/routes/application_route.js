@@ -2,6 +2,11 @@ Ember4.ApplicationRoute = Ember.Route.extend({
     init: function() {
     	this._super();
     	console.log("application route");
+
+        // authenticate with API at startup
+        // this also happens at login/logout
+        if(this.session.isAuthenticated())
+            this.api.setAccessToken(this.session.getSessionAccessToken());
     },
     
     beforeModel: function() {

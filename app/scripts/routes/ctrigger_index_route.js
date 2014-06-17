@@ -3,7 +3,6 @@ Ember4.AppsContentTriggerIndexRoute = Ember.AuthenticatedRoute.extend({
     model: function(params) {
         var models = Ember.A();
 
-        this.api.setAccessToken(this.session.getSessionAccessToken());
         this.api.request('GET', 'v1/mvp_1/trigger/list', {}).then(
             function onSuccess(data, status, xhr){
 
@@ -13,7 +12,7 @@ Ember4.AppsContentTriggerIndexRoute = Ember.AuthenticatedRoute.extend({
                     model.setProperties({
                         qrcode: item._id,
                         title: item.title,
-                        content: item.content_id.content_type
+                        content: item.content_id.text
                     });
 
                     models.pushObject(model);

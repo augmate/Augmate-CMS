@@ -1,7 +1,7 @@
 //Ember4.ApplicationAdapter = DS.FixtureAdapter;
 
 Ember4.ApplicationAdapter = DS.RESTAdapter.extend({
-  host: 'http://localhost:80',
+  host: 'https://web.api.augmate.com/v1/mvp_1/',
   ajax: function(url, method, hash) {
     hash = hash || {}; // hash may be undefined
     hash.crossDomain = true;

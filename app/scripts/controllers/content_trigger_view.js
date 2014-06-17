@@ -31,4 +31,3 @@ Ember4.AppsContentTriggerViewController = Ember.ObjectController.extend({
     }
     
 });
-

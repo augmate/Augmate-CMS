@@ -1,6 +1,7 @@
 Ember4.LoginController = Ember.ObjectController.extend({
 
     targetTransition: null,
+    defaultTransitionAfterLogin: 'apps',
     
     init: function () {
     },
@@ -29,8 +30,13 @@ Ember4.LoginController = Ember.ObjectController.extend({
                     console.log("authed and got result:");
                     console.dir(result);
                     
+                    // create new session
                     self.session.createSession(result.access_token);
                     
+                    // auth API
+                    self.api.setAccessToken(this.session.getSessionAccessToken());
+                    
+                    // transition
                     if(requestedTransition != null) {
                         self.set('targetTransition', null);
                         console.log("redirecting to attempted transition: " + requestedTransition)
@@ -38,7 +44,7 @@ Ember4.LoginController = Ember.ObjectController.extend({
                     } else
                     {
                         console.log("no redirect requested, transitioning to default route");
-                        self.transitionToRoute('apps');
+                        self.transitionToRoute(this.defaultTransitionAfterLogin);
                     }
                 },
                 function onAuthFailure(result) {
