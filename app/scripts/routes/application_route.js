@@ -7,6 +7,7 @@ Ember4.ApplicationRoute = Ember.Route.extend({
     beforeModel: function() {
         var self = this;
         
+        /*
         auth = this.controllerFor('login');
         if(auth.get('isLoggedIn')) {
             console.log("auth controller claims user is logged in");
@@ -14,5 +15,15 @@ Ember4.ApplicationRoute = Ember.Route.extend({
             console.log("auth controller claims user is NOT logged in");
             self.transitionTo('/login');
         }
+        */
+    },
+    
+    actions: {
+//        error: function(error) {
+//            console.log("-------------------------------------------------");
+//            console.log("Ember caught error:");
+//            console.warn(error);
+//            console.log("-------------------------------------------------");
+//        }
     }
 });

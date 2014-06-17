@@ -5,18 +5,19 @@
 
 <form class="m-new-content-trigger" {{action "onSubmit" on="submit"}}>
     <div class="row">
-        <div class="cell">
+        <div class="cell input-fields">
             <div class="input-field">
-                {{input type="text" value=trigger_name placeholder="Name of Content Trigger e.g. Aisle 5 Info"}}
+                {{input type="text" value=model.title placeholder="Name of Content Trigger e.g. Aisle 5 Info"}}
             </div>
             <div class="input-field">
-                {{textarea value=trigger_content placeholder="Text Content to be embedded in QRCode (Limit 50 Characters)"}}
+                {{textarea value=model.content placeholder="Text Content to be embedded in QRCode (Limit 50 Characters)"}}
             </div>
         </div>
         <div class="cell">
             <div class="qrcode-header">QRCode Trigger</div>
-            
-            <img src="http://fpoimg.com/250x250?text=QRCODE" />
+            <div id="qrcode-render-target">
+                {{#view Ember4.QRCodePreviewView}}{{/view}}
+            </div>
         </div>
     </div>
     <div class="controls">
@@ -25,8 +26,10 @@
         <button {{action "onCancel"}} class="btn btn-lg btn-danger">Cancel</button>
     </div>
     
-    <br><br>
-    
-    <h2>Last Scanned by:</h2>
-    <div>test@augmate.com</div>
+    <div class="m-content-trigger-analytics">
+        <br><br>
+        
+        <h2>Last Scanned by:</h2>
+        <div>test@augmate.com</div>
+    </div>
 </form>

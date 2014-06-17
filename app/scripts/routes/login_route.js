@@ -6,4 +6,3 @@ Ember4.LoginRoute = Ember.Route.extend({
     });
   }
 });
-

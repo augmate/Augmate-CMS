@@ -319,6 +319,7 @@ module.exports = function (grunt) {
         neuter: {
             app: {
                 options: {
+                    includeSourceMap: true,
                     filepathTransform: function (filepath) {
                         return yeomanConfig.app + '/' + filepath;
                     }

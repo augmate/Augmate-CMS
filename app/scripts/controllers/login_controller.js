@@ -1,12 +1,10 @@
 Ember4.LoginController = Ember.ObjectController.extend({
 
-    sessionToken: null,
-    isLoggedIn: Ember.computed.notEmpty('sessionToken'),
+    targetTransition: null,
     
-    init: function() {
-        this.set('sessionToken', "yey");
+    init: function () {
     },
-    
+
     actions: {
         loginUser: function () {
             var data = this.getProperties('username', 'password');
@@ -15,9 +13,10 @@ Ember4.LoginController = Ember.ObjectController.extend({
             var encoded = btoa(data.username + ":" + data.password);
             console.log("encoded: " + encoded);
 
-            var that = this;
+            var requestedTransition = this.get('targetTransition');
+            var self = this;
 
-            var authRequest = $.ajax({
+            $.ajax({
                 type: 'POST',
                 url: 'https://auth.api.augmate.com/token',
                 beforeSend: function (req) {
@@ -25,13 +24,27 @@ Ember4.LoginController = Ember.ObjectController.extend({
                 },
                 data: { grant_type: 'client_credentials' },
                 dataType: 'json'
-            });
-            
-            authRequest.then(function (result) {
-                    console.log("then:");
+            }).then(
+                function onAuthSuccess(result) {
+                    console.log("authed and got result:");
                     console.dir(result);
-                    that.transitionToRoute('applist');
-            });
+                    
+                    self.session.createSession(result.access_token);
+                    
+                    if(requestedTransition != null) {
+                        self.set('targetTransition', null);
+                        console.log("redirecting to attempted transition: " + requestedTransition)
+                        requestedTransition.retry();
+                    } else
+                    {
+                        console.log("no redirect requested, transitioning to default route");
+                        self.transitionToRoute('apps');
+                    }
+                },
+                function onAuthFailure(result) {
+                    console.log("auth failed");
+                }
+            );
         }
     }
 });

@@ -4,7 +4,7 @@
     </div>
     
     <div class="cell pull-right">
-        {{#link-to "content_trigger.new" class="btn btn-lg"}}New Content Trigger{{/link-to}}
+        {{#link-to "apps.content_trigger.new" class="btn btn-lg"}}New Content Trigger{{/link-to}}
     </div>
 </div>
 
@@ -17,21 +17,13 @@
         </tr>
     </thead>
     <tbody>
+        {{#each model}}
         <tr>
-            <td>{{#link-to "content_trigger.view"}}Aisle 5 Info{{/link-to}}</td>
+            <td>{{#link-to "apps.content_trigger.view" this}}{{title}}{{/link-to}}</td>
             <td>Receiving</td>
             <td>Edit <i class="fa fa-edit"></i></td>
         </tr>
-        <tr>
-            <td>Aisle 7 Info</td>
-            <td>Receiving</td>
-            <td>Edit <i class="fa fa-edit"></i></td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
+        {{/each}}
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>

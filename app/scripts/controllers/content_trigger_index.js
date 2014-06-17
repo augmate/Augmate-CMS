@@ -1,5 +1,5 @@
-Ember4.ContentTriggerIndexController = Ember.ObjectController.extend({
-
+Ember4.AppsContentTriggerIndexController = Ember.ObjectController.extend({
+    
     
 });
 

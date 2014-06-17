@@ -1,16 +1,28 @@
 {
-  "name": "ember4",
-  "version": "0.0.0",
+  "name": "augmate-cms",
+  "version": "0.0.1",
   "dependencies": {
-    "ember": "1.5.1",
-    "handlebars": "1.2.1",
-    "font-awesome": "4.1.0",
-    "ember-addons.bs_for_ember": "0.7.0",
-    "ember-data": "1.0.0-beta.7",
-    "bootstrap-sass-official": "3.1.1"
-    
+    "jquery-cookie": "~1.4.1",
+    "qrcode-generator": "~0.1.0",
+    "font-awesome": "~4.1.0",
+    "ember-data": "~1.0.0",
+    "ember": "~1.5.1"
   },
   "devDependencies": {
     "ember-mocha-adapter": "0.1.2"
-  }
+  },
+  "homepage": "https://github.com/augmate/project_green_dingo",
+  "authors": [
+    "Alex Barkan <alex@augmate.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
 }

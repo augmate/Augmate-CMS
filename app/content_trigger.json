@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "object": {
+        "_id": "538dcbb93e8ade0b4c9990d6",
+        "app_id": "538dc4ad3e8ade0b4c9990d1",
+        "content_id": {
+            "_id": "538dc8583e8ade0b4c9990d5",
+            "text": "This is a Sample",
+            "content_type": "text"
+        },
+        "trigger_type_id": "538dc3203e8ade0b4c9990cf",
+        "time_created": "2014-06-03T13:20:57.123Z",
+        "qr_file": null,
+        "title": "Aisle 5 Info"
+    }
+}
+
