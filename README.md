@@ -22,6 +22,7 @@ You may already have some if not all of these installed on your system
   * Compass compiles sass/scss into css (it's hard to escape ruby's asset-building tools)  
 
 ```
+apt-get install nodejs
 npm install -g bower  
 npm install -g grunt-cli
 apt-get install ruby
@@ -39,4 +40,6 @@ grunt serve
 Now you have a live server on 0.0.0.0:9000 (bound to all interfaces, not just localhost)  
 
 ## Hints
+
 If running as root (eg: in a docker container), bower will want a --allow-root flag.  
+On Ubuntu, you may have to install nodejs-legacy after the nodejs package.  
