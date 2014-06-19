@@ -32,9 +32,10 @@ Ember4.LoginController = Ember.ObjectController.extend({
                     
                     // create new session
                     self.session.createSession(result.access_token);
+                    self.session.refresh();
                     
                     // auth API
-                    self.api.setAccessToken(this.session.getSessionAccessToken());
+                    self.api.setAccessToken(self.session.getSessionAccessToken());
                     
                     // transition
                     if(requestedTransition != null) {

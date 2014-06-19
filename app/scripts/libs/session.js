@@ -31,8 +31,11 @@ Ember.Session = Ember.Object.create({
     // check state of authentication
     // update anyone who cares
     refresh: function() {
-        if(this.isAuthenticated())
+        if(this.isAuthenticated()) {
             this.set('haveAuthenticatedSession', true);
+        } else {
+            this.set('haveAuthenticatedSession', false);
+        }
     },
     
     setup: function(app, options) {
@@ -67,7 +70,7 @@ Ember.AugmateAPI = Ember.Object.create({
         var access_token = this.get('access_token');
         var url = 'https://web.api.augmate.com/' + path;
         
-        console.log("API Request: " + type + " " + url);
+        console.log("AugmateAPI::request(); API Request: " + type + " " + url);
         
         return $.ajax({
             type: type,

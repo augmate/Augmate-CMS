@@ -5,7 +5,7 @@ Ember4.AppsContentTriggerViewRoute = Ember.AuthenticatedRoute.extend({
     // else if coming from an index page
     //   a cached version of the model is passed and this call is skipped
     model: function(params) {
-        console.log("in view route");
+        console.log("AppsContentTriggerViewRoute::model(); fetching content from api..");
         
         var model = Ember4.Trigger.create({});
         var self = this;
@@ -45,7 +45,7 @@ Ember4.AppsContentTriggerViewRoute = Ember.AuthenticatedRoute.extend({
     
     // always called after a model is assigned, regardless if it was cached
     afterModel: function(model, transition, queryParams) {
-        console.log("afterModel:");
+        console.log("AppsContentTriggerViewRoute::afterModel(); got model:");
         console.dir(model);
     }
 });

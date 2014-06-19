@@ -1,7 +1,8 @@
 Ember4.ApplicationRoute = Ember.Route.extend({
     init: function() {
     	this._super();
-    	console.log("application route");
+    	
+        console.log("ApplicationRoute::init(); checking session auth..");
 
         // authenticate with API at startup
         // this also happens at login/logout
