@@ -12,10 +12,34 @@ Until someone comes up with a better name
 * Font-Awesome for icons  
 
 
+## Prerequisites
+You may already have some if not all of these installed on your system
+
+* NodeJS to run Bower/Grunt  
+  * Bower install third-party frontend dependencies (font-awesome, bourbon, bootstrap, etc)  
+  * Grunt builds a production-server distribution ('dist' folder), watches for file-changes to auto-rebuild, and serves the website for dev-environments locally with support for livereload.  
+* Ruby to run Compass  
+  * Compass compiles sass/scss into css (it's hard to escape ruby's asset-building tools)  
+
+```
+apt-get install nodejs
+npm install -g bower  
+npm install -g grunt-cli
+apt-get install ruby
+gem install compass
+```
+
 ## Setup
+```
 npm install  
 bower install  
 grunt build  
 grunt serve  
+```
 
-Runs on 0.0.0.0:9000
+Now you have a live server on 0.0.0.0:9000 (bound to all interfaces, not just localhost)  
+
+## Hints
+
+If running as root (eg: in a docker container), bower will want a --allow-root flag.  
+On Ubuntu, you may have to install nodejs-legacy after the nodejs package.  
