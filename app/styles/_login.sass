@@ -1,8 +1,13 @@
-.m-login-prompt
+@-webkit-keyframes login-prompt-fadein
+    0%
+        opacity: 0
+    100%
+        opacity: 1
 
-    //width: 400px
+.m-login-prompt
     margin: 50px auto 0px
     text-align: center
+    -webkit-animation: login-prompt-fadein 1s ease-in 0s 1 
     
     .note
         margin-bottom: 30px
