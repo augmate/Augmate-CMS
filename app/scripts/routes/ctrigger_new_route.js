@@ -3,6 +3,13 @@ Ember4.AppsContentTriggerNewRoute = Ember.AuthenticatedRoute.extend({
         return Ember.Object.extend({
             
         });
+    },
+    
+    afterModel: function(model, transition, queryParams) {
+        analytics.track('Creating Content Trigger', {
+            action: 'creating',
+            target: 'Content Trigger'
+        });
     }
 });
 

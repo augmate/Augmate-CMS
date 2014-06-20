@@ -15,16 +15,19 @@ Ember4.AppsContentTriggerNewController = Ember.ObjectController.extend({
             }).then(function onSuccess(data){
                 console.log("created trigger:");
                 console.dir(data);
+
+                analytics.track('Created Content Trigger', {
+                    id: model.qrcode,
+                    title: model.title,
+                    action: 'created',
+                    target: 'Content Trigger'
+                });
                 
                 var newId = data.object._id;
                 self.transitionToRoute("apps.content_trigger.view", newId);
             });
             
             this.transitionToRoute("apps.content_trigger.index");
-        },
-        
-        onPrint: function() {
-            console.log("printing trigger qrcode");
         },
         
         onCancel: function() {

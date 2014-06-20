@@ -14,12 +14,12 @@ Ember4.AppsContentTriggerViewRoute = Ember.AuthenticatedRoute.extend({
         this.api.request('GET', 'v1/mvp_1/trigger/' + params.qrcode, {}).then(
             function onSuccess(data, status, xhr){
 
-                    model.setProperties({
-                        qrcode: data.object._id,
-                        title: data.object.title,
-                        content: data.object.content_id.text
-                    });
-
+                model.setProperties({
+                    qrcode: data.object._id,
+                    title: data.object.title,
+                    content: data.object.content_id.text
+                });
+                
             },
             function onFailure(xhr, status, err) {
                 console.log("trigger-view fail:");
@@ -47,5 +47,12 @@ Ember4.AppsContentTriggerViewRoute = Ember.AuthenticatedRoute.extend({
     afterModel: function(model, transition, queryParams) {
         console.log("AppsContentTriggerViewRoute::afterModel(); got model:");
         console.dir(model);
+
+        analytics.track('View Content Trigger', {
+            id: model.qrcode,
+            title: model.title,
+            action: 'view',
+            target: 'Content Trigger'
+        });
     }
 });

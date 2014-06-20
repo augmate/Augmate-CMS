@@ -8,8 +8,6 @@ Ember4.ApplicationRoute = Ember.Route.extend({
         // this also happens at login/logout
         if(this.session.isAuthenticated())
             this.api.setAccessToken(this.session.getSessionAccessToken());
-        
-        //this.get('controller').set('isLoggedIn', this.session.isAuthenticated());
     },
     
     beforeModel: function() {

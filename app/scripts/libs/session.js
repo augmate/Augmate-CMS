@@ -11,11 +11,21 @@ Ember.Session = Ember.Object.create({
     // on login
     createSession: function(access_token) {
         this.save('access_token', access_token);
+
+        analytics.identify(access_token, {
+            email   : 'alex@augmate.com',
+            name    : 'Alex',
+            title : 'Developer'
+        });
+        
+        analytics.track('Logged In', {});
     },
     
     // on logout
     resetSession: function() {
         localStorage.removeItem('access_token');
+        analytics.track('Logged Out', {});
+        analytics.identify();
     },
     
     getSessionAccessToken: function() {
