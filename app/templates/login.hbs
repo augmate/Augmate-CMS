@@ -5,7 +5,14 @@
     </div>
     
     <div class="login-box">
-        <div class="note">login hint: officialApiClient/C0FFEE</div>
+        <div class="note">login hint: setup an account on firebase</div>
+        <br>
+        {{#each msg in loginErrors}}
+        <div class="error-message">
+            asdf
+        </div>
+        {{/each}}
+        <br>
     
         <div class="input-field">
             <i class="fa fa-user"></i>
@@ -19,5 +26,3 @@
         <button class="btn btn-lg btn-primary" type="submit">log in</button>
     </div>
 </form>
-
-{{outlet}}

@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "dependencies": {
     "jquery-cookie": "~1.4.1",
-    "qrcode-generator": "~0.1.0",
     "font-awesome": "~4.1.0",
     "ember-data": "~1.0.0",
     "ember": "~1.5.1"
   },
   "devDependencies": {
-    "ember-mocha-adapter": "0.1.2"
+    "ember-mocha-adapter": "0.1.2",
+    "emberfire": "~1.0.9",
+    "firebase-simple-login": "~1.6.0"
   },
   "homepage": "https://github.com/augmate/project_green_dingo",
   "authors": [

@@ -5,9 +5,11 @@ Ember.AuthenticatedRoute = Ember.Route.extend({
         if(this.session.isAuthenticated())
             // don't interrupt transition
             console.log('AuthenticatedRoute::beforeModel(); user has a valid session and is authenticated!');
-        else
+        else {
             // user isn't authenticated, redirect to login
+            console.log('AuthenticatedRoute::beforeModel(); user has not yet been authenticated!');
             this.redirectToLogin(transition);
+        }
     },
     redirectToLogin: function(transition) {
         var loginController = this.controllerFor('login');

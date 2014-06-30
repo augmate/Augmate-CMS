@@ -1,5 +1,8 @@
-Ember4.Trigger = Ember.Object.extend({
-    qrcode: null,
-    title: null,
-    content: null
+ProjectDingo.ContentTrigger = DS.Model.extend({
+    title: DS.attr('string'),
+    content: DS.attr('string'),
+
+    qrcode: function() {
+        return this.get('id');
+    }.property()
 });

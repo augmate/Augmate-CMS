@@ -1,13 +1,73 @@
-Ember4.LoginController = Ember.ObjectController.extend({
+ProjectDingo.LoginController = Ember.ObjectController.extend({
 
     targetTransition: null,
     defaultTransitionAfterLogin: 'apps',
+
+    loginErrors: [],
+    
+    notify: function(type, message) {
+        this.loginErrors.pushObject(Ember.Object.create({
+            type: type,
+            message: message
+        }));
+    },
+
     
     init: function () {
+        this._super();
+        
+        console.log('subscribing login controller..');
+        //Ember.FirebaseAuth.subscribe(this.loginResult.bind(this));
+    },
+    
+    loginResult: function(error, user) {
+        console.log("LoginController::loginResult()");
+        
+        if(error)
+            console.dir(error);
+        
+        if(user) {
+            console.dir(user);
+            
+            this.session.onLogin(user);
+            
+            // got an authenticated user
+            // set API access token
+            //this.api.setAccessToken(this.session.getSessionAccessToken());
+            
+            var requestedTransition = this.get('targetTransition');
+            
+            // transition to default route, or a requested route
+            if(requestedTransition != null) {
+                this.set('targetTransition', null);
+                console.log("redirecting to attempted transition: " + requestedTransition)
+                requestedTransition.retry();
+            } else
+            {
+                console.log("no redirect requested, transitioning to default route");
+                this.transitionToRoute(this.defaultTransitionAfterLogin);
+            }
+        }
     },
 
     actions: {
-        loginUser: function () {
+        
+        loginUser: function() {
+            var form = this.getProperties('username', 'password');
+
+            // subscribe to result
+            //ProjectDingo.FirebaseAuth.subscribe(this.loginResult);
+
+            // subscribe & kick-off login request
+            new FirebaseSimpleLogin(ProjectDingo.Firebase, this.loginResult.bind(this))
+            .login('password', {
+                email: form.username,
+                password: form.password,
+                rememberMe: true
+            });
+        },
+        
+        loginUserOld: function () {
             var data = this.getProperties('username', 'password');
             console.dir(data);
 
@@ -45,7 +105,7 @@ Ember4.LoginController = Ember.ObjectController.extend({
                     } else
                     {
                         console.log("no redirect requested, transitioning to default route");
-                        self.transitionToRoute(this.defaultTransitionAfterLogin);
+                        self.transitionToRoute(self.defaultTransitionAfterLogin);
                     }
                 },
                 function onAuthFailure(result) {

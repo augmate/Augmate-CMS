@@ -1,18 +1,4 @@
-Ember4.ApplicationRoute = Ember.Route.extend({
-    init: function() {
-    	this._super();
-    	
-        console.log("ApplicationRoute::init(); checking session auth..");
-
-        // authenticate with API at startup
-        // this also happens at login/logout
-        if(this.session.isAuthenticated())
-            this.api.setAccessToken(this.session.getSessionAccessToken());
-    },
-    
-    beforeModel: function() {
-        var self = this;
-    },
+ProjectDingo.ApplicationRoute = Ember.Route.extend({
     
     actions: {
 //        error: function(error) {

@@ -1,19 +1,19 @@
-Ember4.QRCodePreviewView = Ember.View.extend({
+ProjectDingo.QRCodePreviewView = Ember.View.extend({
     didInsertElement: function() {
 
-        var qrcode_id = this.get('controller').get('model').get('qrcode');
+        var qrcode_id = this.get('controller.model.qrcode');
         console.log("QRCodePreviewView::didInsertElement(); qrcode id: " + qrcode_id);
         
         if(!qrcode_id)
             return;
         
-        var qrcode = new QRCode(document.getElementById('qrcode-render-target'), {
-            text: 'qrcode_id',
+        var qrcode = new ProjectDingo.QRCode(document.getElementById('qrcode-render-target'), {
+            text: qrcode_id,
             width: 250,
             height: 250,
             colorDark: "#000000",
             colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.L
+            correctLevel: ProjectDingo.QRCode.CorrectLevel.L
         });
     },
     
@@ -26,13 +26,13 @@ Ember4.QRCodePreviewView = Ember.View.extend({
         $rt = $('#qrcode-render-target');
         $rt.empty();
         
-        var qrcode = new QRCode($rt[0], {
+        var qrcode = new ProjectDingo.QRCode($rt[0], {
             text: qrcode_id,
             width: 250,
             height: 250,
             colorDark: "#000000",
             colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.L
+            correctLevel: ProjectDingo.QRCode.CorrectLevel.L
         });
     },
     
