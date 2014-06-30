@@ -10,7 +10,8 @@
   "devDependencies": {
     "ember-mocha-adapter": "0.1.2",
     "emberfire": "~1.0.9",
-    "firebase-simple-login": "~1.6.0"
+    "firebase-simple-login": "~1.6.0",
+    "firebase": "~1.0.17"
   },
   "homepage": "https://github.com/augmate/project_green_dingo",
   "authors": [
