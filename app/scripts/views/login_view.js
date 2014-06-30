@@ -1,2 +1,2 @@
-Ember4.LoginView = Ember.View.extend({
+ProjectDingo.LoginView = Ember.View.extend({
 });

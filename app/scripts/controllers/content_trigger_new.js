@@ -1,30 +1,22 @@
-Ember4.AppsContentTriggerNewController = Ember.ObjectController.extend({
+ProjectDingo.AppsContentTriggerNewController = Ember.ObjectController.extend({
 
     actions: {
         onSubmit: function() {
             console.log("submitting new trigger");
-            var self = this;
 
-            // grab current DM
-            var model = this.get('model');
-
-            // push update
-            this.get('api').request('PUT', '/v1/mvp_1/trigger/create', {
-                title: model.title,
-                content_text: model.content
-            }).then(function onSuccess(data){
-                console.log("created trigger:");
-                console.dir(data);
-                
-                var newId = data.object._id;
-                self.transitionToRoute("apps.content_trigger.view", newId);
-            });
+            var start = (new Date).getTime();
             
-            this.transitionToRoute("apps.content_trigger.index");
-        },
-        
-        onPrint: function() {
-            console.log("printing trigger qrcode");
+            var content_trigger = this.store.createRecord('ContentTrigger', {
+                title: this.get('model.title'),
+                content: this.get('model.content')
+            }).save();
+            
+            
+
+            var stop = (new Date).getTime();
+            console.log("AppsContentTriggerNewController::onSubmit(); creating content trigger took: " + (stop - start) + " msec");
+            
+            this.transitionToRoute("apps.content_trigger.view", content_trigger);
         },
         
         onCancel: function() {

@@ -1,4 +1,4 @@
-Ember4.ContactUsController = Ember.ObjectController.extend({
+ProjectDingo.ContactUsController = Ember.ObjectController.extend({
 
     actions: {
         onSubmit: function() {

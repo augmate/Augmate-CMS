@@ -1,4 +1,4 @@
-Ember4.AppsRoute = Ember.AuthenticatedRoute.extend({
+ProjectDingo.AppsRoute = Ember.AuthenticatedRoute.extend({
   model: function(params) {
     return Ember.Object.extend({
     	apps: [

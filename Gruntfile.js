@@ -34,7 +34,7 @@ module.exports = function (grunt) {
             },
             compass: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-                tasks: ['compass:server']
+                tasks: ['compass:server', 'autoprefixer:dist']
             },
             neuter: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
                     middleware: function (connect) {
                         return [
                             modRewrite([
-                                '!\\.html|\\.js|\\.css|\\.woff|\\.ttf$ /index.html [L]'
+                                '!/scripts/|/styles/|\\.html|\\.js|\\.css|\\.woff|\\.ttf$ /index.html [L]'
                             ]),
                             lrSnippet,
                             mountFolder(connect, '.tmp'),
@@ -237,7 +237,8 @@ module.exports = function (grunt) {
             options: {
               variables: {
                 ember: 'bower_components/ember/ember.js',
-                ember_data: 'bower_components/ember-data/ember-data.js'
+                ember_data: 'bower_components/ember-data/ember-data.js',
+                emberfire: 'bower_components/emberfire/dist/emberfire.js'
               }
             },
             files: [
@@ -248,7 +249,8 @@ module.exports = function (grunt) {
             options: {
               variables: {
                 ember: 'bower_components/ember/ember.prod.js',
-                ember_data: 'bower_components/ember-data/ember-data.prod.js'
+                ember_data: 'bower_components/ember-data/ember-data.prod.js',
+                emberfire: 'bower_components/emberfire/dist/emberfire.js'
               }
             },
             files: [
@@ -290,6 +292,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
+        // these are independent tasks running in parallel, no chaining
         concurrent: {
             server: [
                 'emberTemplates',
@@ -323,13 +326,24 @@ module.exports = function (grunt) {
         neuter: {
             app: {
                 options: {
-                    includeSourceMap: true,
+                    // the generated source maps are wrong
+                    includeSourceMap: false,
                     filepathTransform: function (filepath) {
                         return yeomanConfig.app + '/' + filepath;
                     }
                 },
                 src: '<%= yeoman.app %>/scripts/app.js',
                 dest: '.tmp/scripts/combined-scripts.js'
+            }
+        },
+        autoprefixer: {
+            options: {
+                browsers: ['last 3 versions']
+            },
+            dist: {
+                files: {
+                    '.tmp/styles/style.css': '.tmp/styles/style.css'
+                }
             }
         }
     });
@@ -348,6 +362,7 @@ module.exports = function (grunt) {
             'clean:server',
             'replace:app',
             'concurrent:server',
+            'autoprefixer',
             'neuter:app',
             'copy:fonts',
             'connect:livereload',
@@ -371,6 +386,7 @@ module.exports = function (grunt) {
         'concurrent:dist',
         'neuter:app',
         'concat',
+        'autoprefixer',
         'cssmin',
         'uglify',
         'copy',

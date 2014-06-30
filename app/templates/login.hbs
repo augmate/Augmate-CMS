@@ -3,19 +3,26 @@
     <div class="m-branding-image">
         <img src="http://placehold.it/350x300" />
     </div>
-
-    <div class="note">login hint: officialApiClient/C0FFEE</div>
-
-    <div class="input-field">
-        <i class="fa fa-user"></i>
-        {{input type="text" value=username placeholder="Username"}}
+    
+    <div class="login-box">
+        <div class="note">login hint: setup an account on firebase</div>
+        <br>
+        {{#each msg in loginErrors}}
+        <div class="error-message">
+            asdf
+        </div>
+        {{/each}}
+        <br>
+    
+        <div class="input-field">
+            <i class="fa fa-user"></i>
+            {{input type="text" value=username placeholder="Username"}}
+        </div>
+        <div class="input-field">
+            <i class="fa fa-lock"></i>
+            {{input type="password" value=password placeholder="Password"}}
+        </div>
+    
+        <button class="btn btn-lg btn-primary" type="submit">log in</button>
     </div>
-    <div class="input-field">
-        <i class="fa fa-lock"></i>
-        {{input type="password" value=password placeholder="Password"}}
-    </div>
-
-    <button class="btn btn-lg btn-primary" type="submit">log in</button>
 </form>
-
-{{outlet}}

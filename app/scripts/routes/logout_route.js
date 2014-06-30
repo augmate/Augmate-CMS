@@ -1,8 +1,12 @@
-Ember4.LogoutRoute = Ember.Route.extend({
+ProjectDingo.LogoutRoute = Ember.Route.extend({
     beforeModel: function (transition) {
-        console.log("destroying auth session");
-        this.session.resetSession();
-        this.session.refresh();
+        console.log("LogoutRoute::beforeModel(); destroying auth session..");
+
+        this.session.onLogout();
+        ProjectDingo.Firebase.unauth();
+        
+        //this.session.resetSession();
+        //this.session.refresh();
         this.transitionTo('login');
     }
 });
